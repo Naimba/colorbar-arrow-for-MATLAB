@@ -1,7 +1,7 @@
 function cax = mycolorbar(tick,color,mode,vnumber,bar_pos)
 % cax = MYCOLORBAR(tick,color,mode,vnumber,bar_pos)
 % 本函数提供了带尖端的colorbar
-% -----------------------输入变量说明-----------------------
+% -----------------------输入变量说明----------------------- 
 % mode 的可选项为'h'；'v'
 % 分别为水平和垂直
 % vnumber 的可选项为'none'或'=='；'lower'或'<='； 'upper'或'=>'；'all'或'<>' "
@@ -12,7 +12,9 @@ function cax = mycolorbar(tick,color,mode,vnumber,bar_pos)
 % cax 为colorbar的绘图句柄
 %
 % -----------------------函数调用示例----------------------- 
+%
 % cax = MYCOLORBAR(-25:5:25,cm1,'h','all',[0.15, 0.045, 0.7, 0.02]);
+%
 % cax = MYCOLORBAR(-25:5:25,cm1,'v','<>');
 % 
 %  This fuction is by Yifan Liu, Academy of the Future Ocean, Ocean University of China.
@@ -37,7 +39,7 @@ if nargin == 4
     if isequal(mode,'h')
         bar_pos = [0.1 0.1 0.8 0.03];
     else
-        bar_pos = [0.87 0.11 0.02 0.81];
+        bar_pos = [0.9 0.1 0.03 0.8];
     end
 end
 
@@ -45,14 +47,14 @@ set(gcf,'color','w');
 cax=axes('position',bar_pos);
 cdata = zeros(1,m);
 for i=1:m
-    cdata(i) = (tick(i)+tick(i+1))/2;
+    cdata(i) = (i+i+1)/2;
 end
 
 if isequal(mode,'v')
     set(cax,'yaxislocation','right');
 end
 
-colormap(color);clim([tick(1) tick(end)])
+colormap(color);clim([1 len_tick])
 if isequal(mode,'h')% 水平
     axis([0 m 0 1])
     line([0 1],[0 0],'linewidth',2,'color','w','parent',cax)
